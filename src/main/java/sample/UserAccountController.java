@@ -58,7 +58,7 @@ public class UserAccountController {
         userAvatar.setFill(new ImagePattern(image));
 
         addFriendButton.setOnMouseClicked(event -> {
-            // Open friend list from DB
+            // Open friend list from DB ss
         });
     }
 
