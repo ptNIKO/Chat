@@ -1,4 +1,4 @@
-package sample;
+package sample.Controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStageObj = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/Login.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/UserAccount.fxml"));
         primaryStage.setTitle("Hippo");
         primaryStage.setScene(new Scene(root, 948, 583));
         primaryStage.setMinWidth(948);

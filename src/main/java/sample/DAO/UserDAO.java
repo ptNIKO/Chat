@@ -3,15 +3,17 @@ package sample.DAO;
 import sample.Model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserDAO {
+public class UserDAO implements DAO{
     // Get and Add user
     private Connection con = null;
     private PreparedStatement peparedStatement = null;
     private int result;
     private ResultSet resultSet;
 
-    public  UserDAO (){
+    public UserDAO (){
         String URL = "jdbc:mysql://localhost:3306/mydbtest"+
                 "?verifyServerCertificate=false"+
                 "&useSSL=false"+
@@ -36,19 +38,19 @@ public class UserDAO {
     }
 
     public void AddUser(User user){
-
         try {
-                // query
-                String sql = "insert into mydbtest.user (Name,Password,NickName) values (?,?,?)";
-                peparedStatement = con.prepareStatement(sql);
-                peparedStatement.setString(1, user.getLogin());
-                peparedStatement.setString(2, user.getPassword());
-                peparedStatement.setString(3, user.getNickName());
-                result = peparedStatement.executeUpdate();
-                if (result == 1) {
-                    System.out.println("Вы зарегестрированы");
-                } else
-                    System.out.println("Вы не зарегестрированы");
+            // query
+            String sql = "insert into mydbtest.user (Name,Password,NickName) values (?,?,?)";
+            peparedStatement = con.prepareStatement(sql);
+            peparedStatement.setString(1, user.getLogin());
+            peparedStatement.setString(2, user.getPassword());
+            peparedStatement.setString(3, user.getNickName());
+            result = peparedStatement.executeUpdate();
+
+            if (result == 1) {
+                System.out.println("Вы зарегестрированы");
+            } else
+                System.out.println("Вы не зарегестрированы");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +59,6 @@ public class UserDAO {
 
     public User GetUser (String login, String password) {
         User res = null;
-//query
         String sql = "select * from mydbtest.user where Name = ? and Password = ?";
 
         try {
@@ -66,10 +67,11 @@ public class UserDAO {
             peparedStatement.setString(2, password);
             resultSet = peparedStatement.executeQuery();
             if (resultSet.next()){
+                int id = resultSet.getInt(1);
                 login = resultSet.getString(2);
                 password = resultSet.getString(3);
                 String NickName = resultSet.getString(4);
-                res = new User(NickName,login,password);
+                res = new User(id,NickName,login,password);
             }
             else {
                 System.out.println("Неверный логин или пароль");
@@ -83,19 +85,37 @@ public class UserDAO {
         }
 
         return res;
-
     }
 
 
     public void Close(){
-        try
-        {
+        try {
             con.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
+    public List<User> getAll() {
+        List<User> userList = new ArrayList<>();
+        String sql = "select * from mydbtest.user";
+        try{
+            peparedStatement = con.prepareStatement(sql);
+            resultSet = peparedStatement.executeQuery();
+            while (resultSet.next()){
+                User user = new User();
+                user.setId(resultSet.getInt(1));
+                user.setLogin(resultSet.getString(2));
+                user.setPassword(resultSet.getString(3));
+                user.setNickName(resultSet.getString(4));
+                userList.add(user);
+            }
+        } catch (SQLException e){
+            System.out.println("Error here");
+        }
+
+
+        return userList;
+    }
 }

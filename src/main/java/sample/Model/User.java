@@ -5,15 +5,25 @@ public class User {
     private String nickName;
     private String login;
     private String password;
+    private int id;
 
 
     public User() {
     }
 
-    public User(String nickName, String login, String password) {
+    public User(int id,String nickName, String login, String password) {
+        this.id = id;
         this.nickName = nickName;
         this.login = login;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNickName() {

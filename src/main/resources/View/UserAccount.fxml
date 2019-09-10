@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.ColorInput?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="583.0" prefWidth="948.0" styleClass="background" stylesheets="@../Style/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserAccountController">
+<AnchorPane prefHeight="583.0" prefWidth="948.0" styleClass="background" stylesheets="@../Style/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.UserAccountController">
    <children>
       <Label fx:id="timeNow" alignment="CENTER" layoutX="834.0" layoutY="539.0" prefHeight="30.0" prefWidth="100.0" text="Time" textFill="WHITE">
          <font>
@@ -24,11 +28,20 @@
                </font>
             </Label>
             <Circle fx:id="userAvatar" fill="WHITE" layoutX="125.0" layoutY="146.0" radius="72.0" stroke="#aeaeae" strokeType="INSIDE" />
-            <Text fx:id="addFriendButton" layoutX="73.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Friend" textAlignment="CENTER" wrappingWidth="114.0">
+            <Text fx:id="addFriendButton" layoutX="73.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Friend" textAlignment="CENTER" wrappingWidth="114.0">
                <font>
                   <Font name="Century Gothic" size="19.0" />
                </font>
             </Text>
+            <ScrollPane hbarPolicy="NEVER" layoutX="24.0" layoutY="290.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="264.0" prefWidth="210.0">
+               <content>
+                  <FlowPane fx:id="flowPaneFriend" alignment="TOP_CENTER" cache="true" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="500.0" prefWidth="199.0" style="-fx-background-color: white;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
          </children>
          <effect>
             <Blend mode="RED">
@@ -38,5 +51,6 @@
             </Blend>
          </effect>
       </Pane>
+      <TextFlow layoutX="275.0" layoutY="213.0" lineSpacing="10.0" prefHeight="312.0" prefWidth="615.0" style="-fx-background-color: gray;" />
    </children>
 </AnchorPane>

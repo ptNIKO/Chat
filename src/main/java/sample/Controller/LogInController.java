@@ -1,4 +1,4 @@
-package sample;
+package sample.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +18,8 @@ import sample.Service.UserService;
 import javafx.event.ActionEvent;
 
 import javafx.scene.image.ImageView;
-import java.awt.*;
+
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 public class LogInController {
 
@@ -89,7 +87,6 @@ public class LogInController {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
         });
-
 
         //Фокус курсора при запуске
         txtPassword.setFocusTraversable(false);
