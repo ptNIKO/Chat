@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DAO {
     List<User> getAll() throws SQLException;
+    //TODO допилить интерфейс
 }

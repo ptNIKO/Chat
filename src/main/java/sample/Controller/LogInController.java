@@ -100,6 +100,9 @@ public class LogInController {
         stage.close();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserAccount.fxml"));
         Parent parent = null;
+        loader.setControllerFactory(User -> {
+            return new UserAccountController(user,userService);
+        });
         try {
             parent = (Parent) loader.load();
         } catch (IOException e) {
@@ -107,7 +110,6 @@ public class LogInController {
         }
         stage = new Stage();
         UserAccountController userAccountController = (UserAccountController) loader.getController();
-        userAccountController.setUser(user);
         stage.setTitle("OMG");
         stage.setScene(new Scene(parent));
         stage.show();
