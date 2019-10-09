@@ -1,0 +1,22 @@
+.background {
+    -fx-background-color:  #F5F5F5;
+}
+
+.leftInformationPanel {
+    -fx-background-color: #F5F5F5;
+}
+
+.workSpace {
+    -fx-background-color:  #F5F5F5;
+}
+
+.textColor {
+    -fx-text-fill: #9e9e9e;
+}
+
+
+
+TextFlow {
+    -fx-background-color: #D9EAF2;
+    -fx-font-size: 15.0px;
+}

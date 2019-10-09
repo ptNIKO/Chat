@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import sample.Model.User;
 import sample.Service.UserService;
 
@@ -112,6 +113,7 @@ public class LogInController {
         UserAccountController userAccountController = (UserAccountController) loader.getController();
         stage.setTitle("OMG");
         stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
 
     }

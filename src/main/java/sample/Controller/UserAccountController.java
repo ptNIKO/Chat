@@ -8,13 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.ImagePattern;
 
 
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import sample.Model.User;
 import sample.Service.UserService;
@@ -44,15 +49,36 @@ public class UserAccountController implements Initializable {
     private Circle userAvatar;
 
     @FXML
-    private Text addFriendButton;
+    public FlowPane flowPaneFriend;
 
     @FXML
-    public FlowPane flowPaneFriend;
+    public TextField textField;
+
+    @FXML
+    public TextFlow textFlow;
 
     public UserAccountController (User user,UserService userService){
         this.user = user;
         this.userService = userService;
     }
+
+    @FXML
+    void sendMessageEnter(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER) && testString(textField.getText())){
+            textFlow.getChildren().add(new Text(user.getNickName() + ": " + textField.getText() + "\n"));
+            System.out.println(textField.getText());
+            textField.setText("");
+            //TODO Сhecking a string for spaces
+        }
+    }
+
+    private boolean testString(final String str){
+        if (!str.trim().equals(""))
+            return true;
+        else
+            return false;
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,9 +91,6 @@ public class UserAccountController implements Initializable {
             e.printStackTrace();
         }
 
-        addFriendButton.setOnMouseClicked(event -> {
-            // Open friend list from DB ss
-        });
 
     }
 
