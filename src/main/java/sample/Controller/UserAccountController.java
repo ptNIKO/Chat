@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 
 
@@ -38,12 +40,11 @@ public class UserAccountController implements Initializable {
     private User user;
     private UserService userService;
 
+    private double xOffset;
+    private double yOffset;
 
     @FXML
     private Label NickNameLabel;
-
-    @FXML
-    private Label timeNow;
 
     @FXML
     private Circle userAvatar;
@@ -56,6 +57,22 @@ public class UserAccountController implements Initializable {
 
     @FXML
     public TextFlow textFlow;
+
+    @FXML
+    private Pane windowMove;
+
+    @FXML
+    public Circle closeButton;
+
+    @FXML
+    public Circle maximazeButton;
+
+    @FXML
+    public Circle minimizeButton;
+
+    @FXML
+    public Button joinChatButton;
+
 
     public UserAccountController (User user,UserService userService){
         this.user = user;
@@ -82,8 +99,8 @@ public class UserAccountController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        WindowMovement();
         NickNameLabel.setText(user.getNickName());
-        initializeTime();
         initializeAvatar();
         try {
             initializeFriends();
@@ -91,13 +108,44 @@ public class UserAccountController implements Initializable {
             e.printStackTrace();
         }
 
-
     }
 
-    private void initializeTime() {
-        Date now = new Date();
-        String time;
-        timeNow.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(now));
+    private boolean windowSizeChecker = true;
+
+    private void WindowMovement() {
+
+        windowMove.setOnMousePressed(event -> {
+            xOffset =  Main.getStageObj().getX() - event.getScreenX();
+            yOffset =  Main.getStageObj().getY() - event.getScreenY();
+        });
+
+        windowMove.setOnMouseDragged(event -> {
+            Main.getStageObj().setX(event.getScreenX() + xOffset);
+            Main.getStageObj().setY(event.getScreenY() + yOffset);
+        });
+
+        closeButton.setOnMouseClicked(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        });
+
+        maximazeButton.setOnMouseClicked(event -> {
+            Stage stage = (Stage) maximazeButton.getScene().getWindow();
+            if (windowSizeChecker){
+                stage.setMaximized(true);
+                windowSizeChecker = false;
+            } else {
+                stage.setMaximized(false);
+                windowSizeChecker = true;
+            }
+
+        });
+
+        minimizeButton.setOnMouseClicked(event -> {
+            Stage stage = (Stage) minimizeButton.getScene().getWindow();
+            stage.setIconified(true);
+        });
+
     }
 
     private void initializeAvatar() {

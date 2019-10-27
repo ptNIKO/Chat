@@ -48,6 +48,6 @@
     -fx-pref-width: 288;
     -fx-pref-height: 312;
     -fx-background-color: #1d1d1d;
-    -fx-effect: dropshadow( one-pass-box, #1C1C1C,23,0.98,0,0);
+    -fx-effect: dropshadow(one-pass-box, #1C1C1C,23,0.98,0,0);
 
 }
