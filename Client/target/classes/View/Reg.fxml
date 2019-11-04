@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="948.0" styleClass="background" stylesheets="@../Style/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.RegController">
+    <children>
+        <TextField fx:id="loginTextField" layoutX="377.0" layoutY="278.0" prefHeight="25.0" prefWidth="169.0" promptText="Login" styleClass="text-field" stylesheets="@../Style/DarkTheme.css">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </TextField>
+        <Button fx:id="ButtonRegister" defaultButton="true" layoutX="405.0" layoutY="364.0" mnemonicParsing="false" onAction="#handlerReg" prefHeight="33.0" prefWidth="112.0" text="Register" />
+      <Label fx:id="ButtonBack" alignment="CENTER" layoutX="11.0" layoutY="21.0" prefHeight="17.0" prefWidth="103.0" text="Back" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <TextField fx:id="nickTextField" cache="true" layoutX="377.0" layoutY="237.0" prefHeight="25.0" prefWidth="169.0" promptText="Nick Name" styleClass="text-field" stylesheets="@../Style/DarkTheme.css">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordPasField" layoutX="377.0" layoutY="321.0" prefHeight="25.0" prefWidth="169.0" promptText="Password">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </PasswordField>
+      <Label fx:id="lblTest" alignment="CENTER" layoutX="326.0" layoutY="533.0" prefHeight="36.0" prefWidth="296.0" text="Test" textAlignment="CENTER" textFill="WHITE" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="closeButton" fitHeight="30.0" fitWidth="30.0" layoutX="907.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/Cancel_50px.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>
