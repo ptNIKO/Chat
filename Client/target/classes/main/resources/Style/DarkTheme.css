@@ -1,0 +1,53 @@
+.background {
+    -fx-background-color: #1d1d1d; /*#1d1d1d*/
+}
+.text-field {
+    -fx-background-color: #a9a9a9 , #1d1d1d , #1d1d1d;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-text-inner-color: white;
+}
+
+.text-field:focused {
+    -fx-background-color: #66a6e2 , #1d1d1d , #1d1d1d;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-text-inner-color: white;
+}
+
+.button {
+
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Century Gothic", Century Gothic;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
+}
+
+.backgroundTest {
+    -fx-background-color: #ffffff;
+}
+
+.backgroundPanel{
+    -fx-background-color: white;
+}
+
+.testPane {
+    -fx-pref-width: 288;
+    -fx-pref-height: 312;
+    -fx-background-color: #1d1d1d;
+    -fx-effect: dropshadow(one-pass-box, #1C1C1C,23,0.98,0,0);
+
+}

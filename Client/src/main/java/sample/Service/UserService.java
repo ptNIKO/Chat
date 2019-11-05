@@ -1,7 +1,7 @@
-package sample.Service;
+package sample.service;
 
-import sample.DAO.UserDAO;
-import sample.Model.User;
+import sample.dao.UserDAO;
+import sample.model.User;
 
 import java.sql.SQLException;
 import java.util.List;

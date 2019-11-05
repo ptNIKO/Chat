@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import sample.Model.User;
-import sample.Service.UserService;
+import sample.model.User;
+import sample.service.UserService;
 
 import java.io.IOException;
 

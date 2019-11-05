@@ -1,0 +1,30 @@
+.background {
+    -fx-background-color:  #F5F5F5;
+}
+
+.leftInformationPanel {
+    -fx-background-color: #F5F5F5;
+}
+
+.workSpace {
+    -fx-background-color:  #F5F5F5;
+}
+
+.textColor {
+    -fx-text-fill: #9e9e9e;
+}
+
+
+
+TextFlow {
+    -fx-background-color: #D9EAF2;
+    -fx-font-size: 15.0px;
+}
+
+.testPane {
+    -fx-pref-width: 244;
+    -fx-pref-height: 242;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(one-pass-box, #C7C3C3,13,0.20,0,0);
+
+}

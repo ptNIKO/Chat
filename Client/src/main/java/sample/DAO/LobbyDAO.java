@@ -1,6 +1,6 @@
-package sample.DAO;
+package sample.dao;
 
-import sample.Model.User;
+import sample.model.User;
 
 import java.sql.*;
 

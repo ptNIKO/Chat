@@ -1,4 +1,4 @@
-package sample.Controller;
+package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sample.Model.User;
-import sample.Service.UserService;
+import sample.model.User;
+import sample.service.UserService;
 
 
 import javafx.event.ActionEvent;
