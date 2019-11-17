@@ -1,5 +1,6 @@
 package sample.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import network.ITCPConnectionListener;
+import network.TCPConnection;
 import sample.model.User;
 import sample.service.UserService;
 
@@ -27,11 +30,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class UserAccountController implements Initializable {
+public class UserAccountController implements Initializable, ITCPConnectionListener {
 
     private User user;
     private UserService userService;
+    private TCPConnection connection;
 
+    private static final String IP_ADDR = "192.168.1.39";
+    private static final int PORT = 8189;
     private double xOffset;
     private double yOffset;
 
@@ -65,6 +71,9 @@ public class UserAccountController implements Initializable {
     @FXML
     public Button joinChatButton;
 
+    @FXML
+    public Button disconnectChatButton;
+
 
     public UserAccountController (User user,UserService userService){
         this.user = user;
@@ -73,10 +82,12 @@ public class UserAccountController implements Initializable {
 
     @FXML
     void sendMessageEnter(KeyEvent event) {
+        String msg = "";
         if (event.getCode().equals(KeyCode.ENTER) && testString(textField.getText())){
-            textFlow.getChildren().add(new Text(user.getNickName() + ": " + textField.getText() + "\n"));
-            System.out.println(textField.getText());
+            msg = textField.getText();
+            connection.sentString(user.getNickName() + ": " + msg);
             textField.setText("");
+
             //TODO Сhecking a string for spaces
         }
     }
@@ -91,7 +102,10 @@ public class UserAccountController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        WindowMovement();
+
+        windowMovement();
+        joinChat();
+        disconnectChat();
         NickNameLabel.setText(user.getNickName());
         initializeAvatar();
         try {
@@ -104,16 +118,16 @@ public class UserAccountController implements Initializable {
 
     private boolean windowSizeChecker = true;
 
-    private void WindowMovement() {
+    private void windowMovement() {
 
         windowMove.setOnMousePressed(event -> {
-            xOffset =  Main.getStageObj().getX() - event.getScreenX();
-            yOffset =  Main.getStageObj().getY() - event.getScreenY();
+            xOffset =  LogInController.getStageObj().getX() - event.getScreenX();
+            yOffset =  LogInController.getStageObj().getY() - event.getScreenY();
         });
 
         windowMove.setOnMouseDragged(event -> {
-            Main.getStageObj().setX(event.getScreenX() + xOffset);
-            Main.getStageObj().setY(event.getScreenY() + yOffset);
+            LogInController.getStageObj().setX(event.getScreenX() + xOffset);
+            LogInController.getStageObj().setY(event.getScreenY() + yOffset);
         });
 
         closeButton.setOnMouseClicked(event -> {
@@ -161,6 +175,53 @@ public class UserAccountController implements Initializable {
             }
 
         }
+
+    }
+
+    private void joinChat() {
+        joinChatButton.setOnMouseClicked(event -> {
+            try {
+                connection = new TCPConnection(this, IP_ADDR, PORT, user.getNickName());
+            } catch (IOException e) {
+                printMsg("Connection exception :" + e);
+            }
+        });
+    }
+
+    private void disconnectChat() {
+        disconnectChatButton.setOnMouseClicked(event -> {
+            connection.disconnect();
+        });
+    }
+
+    @Override
+    public void onConnectionReady(TCPConnection tcpConnection) {
+        printMsg("Connection ready...");
+    }
+
+    @Override
+    public void onReceiveString(TCPConnection tcpConnection, String value) {
+        printMsg(value);
+    }
+
+    @Override
+    public void onDisconnect(TCPConnection tcpConnection) {
+        printMsg("Connection close...");
+    }
+
+    @Override
+    public void onException(TCPConnection tcpConnection, Exception e) {
+        printMsg("Connection exception :" + e);
+    }
+
+    private synchronized void printMsg(String msg) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                textFlow.getChildren().add(new Text(msg + "\n"));
+                System.out.println(msg);
+            }
+        });
     }
 }
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="948.0" styleClass="background" stylesheets="@../Style/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.RegController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="948.0" styleClass="background" stylesheets="@../Style/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.RegController">
     <children>
         <TextField fx:id="loginTextField" layoutX="377.0" layoutY="278.0" prefHeight="25.0" prefWidth="169.0" promptText="Login" styleClass="text-field" stylesheets="@../Style/DarkTheme.css">
             <font>

@@ -12,9 +12,13 @@ public class TCPConnection {
     private final BufferedReader in;
     private final BufferedWriter out;
 
-    public TCPConnection(ITCPConnectionListener evenListener, String ipAddress, int port) throws  IOException{
+    private String userName;
+
+    public TCPConnection(ITCPConnectionListener evenListener, String ipAddress, int port, String userName) throws  IOException{
         this(evenListener, new Socket(ipAddress, port));
+        this.userName = userName;
     }
+
 
     public TCPConnection(ITCPConnectionListener evenListener, Socket socket) throws IOException {
         this.evenListener = evenListener;
@@ -27,7 +31,8 @@ public class TCPConnection {
                 try {
                     evenListener.onConnectionReady(TCPConnection.this);
                     while (!rxThread.isInterrupted()){
-                        evenListener.onReceiveString(TCPConnection.this, in.readLine());
+                        evenListener.onReceiveString(TCPConnection.this, in.readLine() + " " + userName);
+                        userName = "";
                     }
                 } catch (IOException e) {
                     evenListener.onException(TCPConnection.this, e);

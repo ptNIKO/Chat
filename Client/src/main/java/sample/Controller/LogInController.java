@@ -94,6 +94,8 @@ public class LogInController {
         txtUsername.setFocusTraversable(false);
     }
 
+    private static Stage primaryStageObj;
+
     @FXML
     void handlerLogin(ActionEvent event){
         user = userService.GetUser(txtUsername.getText().toString(),txtPassword.getText().toString());
@@ -110,12 +112,17 @@ public class LogInController {
             e.printStackTrace();
         }
         stage = new Stage();
+        primaryStageObj = stage;
         UserAccountController userAccountController = (UserAccountController) loader.getController();
         stage.setTitle("OMG");
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
 
+    }
+
+    public static Stage getStageObj (){
+        return primaryStageObj;
     }
 
 }

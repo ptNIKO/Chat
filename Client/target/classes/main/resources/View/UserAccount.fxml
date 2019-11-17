@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="583.0" prefWidth="948.0" style="-fx-background-color: #F5F5F5;" styleClass="background" stylesheets="@../Style/MainFormStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.UserAccountController">
+<AnchorPane fx:id="anchorPane" prefHeight="583.0" prefWidth="948.0" style="-fx-background-color: #F5F5F5;" styleClass="background" stylesheets="@../Style/MainFormStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UserAccountController">
    <children>
       <Pane layoutY="26.0" prefHeight="557.0" prefWidth="260.0" style="-fx-background-color: #FFFFFF;" styleClass="leftInformationPanel" stylesheets="@../Style/MainFormStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="688.0" AnchorPane.topAnchor="26.0">
          <children>
@@ -55,13 +55,12 @@
             </Blend>
          </effect>
       </Pane>
-      <Pane fx:id="windowMove" layoutY="-3.0" prefHeight="29.0" prefWidth="948.0" style="-fx-background-color: #F5F5F5;" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0" />
-      <TextFlow fx:id="textFlow" cache="true" layoutX="260.0" layoutY="82.0" lineSpacing="6.0" prefHeight="459.0" prefWidth="688.0" stylesheets="@../Style/MainFormStyle.css" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="0.0" />
       <TextField fx:id="textField" layoutX="261.0" layoutY="541.0" onKeyPressed="#sendMessageEnter" prefHeight="41.0" prefWidth="619.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="68.0">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
+      <Pane fx:id="windowMove" layoutX="-1.0" layoutY="-3.0" prefHeight="29.0" prefWidth="948.0" style="-fx-background-color: #F5F5F5;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-3.0" />
       <Circle fx:id="closeButton" fill="#f44336" layoutX="930.0" layoutY="13.0" radius="10.0" stroke="#ffffff00" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="8.0" />
       <Circle fx:id="maximazeButton" fill="#eeee14" layoutX="905.0" layoutY="13.0" radius="10.0" stroke="#eeee1400" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="33.0" />
       <Circle fx:id="minimizeButton" fill="#65ff00" layoutX="882.0" layoutY="13.0" radius="10.0" stroke="#ffffff00" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="3.0" />
@@ -75,7 +74,13 @@
                </font>
             </Label>
             <Button fx:id="joinChatButton" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="64.0" text="Join" />
+            <Button fx:id="disconnectChatButton" layoutX="601.0" layoutY="8.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="64.0" text="Disconn" />
          </children>
       </Pane>
+      <ScrollPane layoutX="260.0" layoutY="82.0" prefHeight="461.0" prefWidth="688.0">
+         <content>
+            <TextFlow fx:id="textFlow" cache="true" lineSpacing="6.0" prefHeight="460.0" prefWidth="673.0" stylesheets="@../Style/MainFormStyle.css" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
